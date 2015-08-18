@@ -1,5 +1,5 @@
-# require-kickstart
-RequireKickstart is a project template built to allow a quick up and running approach to building AMD based javascript apps. Its a very simple project skeleton aimed at giving quick access to build processes that supply a range of checks, tests, and optimisation of CSS and JS in the final output of your project.
+# angular-require-kickstart
+Angular-Require-Kickstart is a project template built to allow a quick up and running approach to building AMD based Angular apps. Its a very simple project skeleton aimed at giving quick access to build processes that supply a range of checks, tests, and optimisation of CSS and JS in the final output of your project.
 
 **Prerequisites - You need to have Node, Ruby, and RubyGems installed**
 
@@ -20,6 +20,8 @@ This will organise your src file so that it can run the basic JS app. All your p
 - Bootstrap 3
 - JQuery
 - RequireJS
+- es5-shim
+- AngularJS
 - Unit testing with karma/jasmine
 - Test servers
     - For launching your project from both the src and build folders
