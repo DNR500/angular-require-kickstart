@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
     'use strict';
-
+    // TODO - add watch task for dev sass
+    // TODO - remove the need for the temp folder
     var jsFiles = ['Gruntfile.js', 'testserver.js', 'src/**/*.js', 'test/**/*.js'];
 
     grunt.initConfig({
@@ -108,6 +109,11 @@ module.exports = function(grunt) {
                         flatten: true, filter: 'isFile'
                     },
                     {
+                        expand: true, cwd: 'bower_components/angular-mocks/',
+                        src: 'angular-mocks.js', dest: 'src/js/libs/angular-mocks/',
+                        flatten: true, filter: 'isFile'
+                    },
+                    {
                         expand: true, cwd: 'bower_components/angular-bootstrap/',
                         src: 'ui-bootstrap-tpls.min.js', dest: 'src/js/libs/uibootstrap/',
                         flatten: true, filter: 'isFile'
@@ -157,7 +163,7 @@ module.exports = function(grunt) {
             },
             production: {
                 options: {
-                    sassDir: 'build/scss',
+                    sassDir: 'src/scss',
                     cssDir: 'build/css',
                     sourcemap: false,
                     outputStyle: 'compressed',
@@ -168,7 +174,12 @@ module.exports = function(grunt) {
         clean: {
             build: ["build/"],
             temp: ["tmp/"],
-            buildChildren: ["build/scss/", "build/css/main.css.map", "build/js/app", "build/js/main.js"]
+            buildChildren: ["build/scss/",
+                            "build/css/main.css",
+                            "build/css/main.css.map",
+                            "build/js/app",
+                            "build/js/libs/angular-mocks",
+                            "build/js/main.js"]
         },
         requirejs: {
             compile: {
@@ -259,7 +270,7 @@ module.exports = function(grunt) {
                                 'requirejs:compile',
                                 'compass:production',
                                 'clean:temp']);
-    grunt.registerTask('launchSrc', ['concurrent:src']);
+    grunt.registerTask('launchSrc', ['compass:dev','concurrent:src']);
     grunt.registerTask('launchBuild', ['build','concurrent:build']);
     grunt.registerTask('launchPlato', ['plato','open:plato']);
     grunt.registerTask('default', ['test']);

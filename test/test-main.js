@@ -17,12 +17,16 @@ requirejs.config({
         'jquery': 'libs/jquery/jquery.min',
         'text': 'lib/require-text/text.min',
         'angular': 'libs/angular/angular.min',
-        'uiBootstrap': 'libs/uibootstrap/ui-bootstrap-tpls.min'
+        'uiBootstrap': 'libs/uibootstrap/ui-bootstrap-tpls.min',
+        'angularMocks': 'libs/angular-mocks/angular-mocks'
     },
     shim: {
         'angular': {
             deps: ['es5shim'],
             exports : 'angular'
+        },
+        'angularMocks': {
+            'deps': ['angular']
         },
         'uiBootstrap': {
             deps: ['angular']
