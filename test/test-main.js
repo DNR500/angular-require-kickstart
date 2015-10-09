@@ -10,7 +10,7 @@ for (var file in window.__karma__.files) {
 
 requirejs.config({
     // Karma serves files from '/base'
-    baseUrl: 'base/src/js',
+    baseUrl: '/base/src/js',
 
     paths: {
         'es5shim': 'libs/es5shim/es5-shim.min',
