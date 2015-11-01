@@ -1,8 +1,5 @@
 module.exports = function(grunt) {
     'use strict';
-    // TODO - add watch task for dev sass
-    // TODO - remove the need for the temp folder
-    var jsFiles = ['Gruntfile.js', 'testserver.js', 'src/**/*.js', 'test/**/*.js'];
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -25,7 +22,7 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-            files: jsFiles
+            files: ['Gruntfile.js', 'testserver.js', 'src/**/*.js', 'test/**/*.js']
         },
         karma: {
             unit: {
@@ -206,7 +203,7 @@ module.exports = function(grunt) {
                 app: 'Google Chrome'
             },
             build : {
-                path: 'http://127.0.0.1:4789',
+                path: 'http://127.0.0.1:4788',
                 app: 'Google Chrome'
             },
             plato : {
@@ -216,10 +213,13 @@ module.exports = function(grunt) {
         },
         nodemon: {
             src: {
-                script: 'serversrc.js'
+                script: 'server.js'
             },
             build: {
-                script: 'serverbuild.js'
+                script: 'server.js',
+                options: {
+                    args: ['/build']
+                }
             }
         },
         concurrent: {
@@ -235,10 +235,6 @@ module.exports = function(grunt) {
                     logConcurrentOutput: true
                 }
             }
-        },
-        watch: {
-            files: jsFiles,
-            tasks: ['test']
         }
     });
 

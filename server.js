@@ -1,9 +1,10 @@
-// Module dependencies.
 var application_root = __dirname,
     express = require( 'express' ), //Web framework
     path = require( 'path' ), //Utilities for dealing with file paths
     fs = require("fs"),
     bodyParser = require('body-parser');
+
+var serverDirectory = process.argv[2] || "/src";
 
 function setResponse(res, content){
     res.header('Content-Type', 'application/json');
@@ -13,14 +14,11 @@ function setResponse(res, content){
     res.status(200).end();
 }
 
-//Create server
 var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + '/build'));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + serverDirectory));
 
-// http....
-//Start server
-var port = 4789;
+var port = 4788;
 var ip = "127.0.0.1"; // change to your machines ip for other devices to access
 app.listen( port, ip, function() {
     console.log( 'Express server listening on port %d in %s mode', port, app.settings.env );
@@ -43,12 +41,3 @@ app.post('/postdata',function(req,res){
         setResponse(res, content);
     } , delay);
 });
-
-
-
-
-
-
-
-
-
